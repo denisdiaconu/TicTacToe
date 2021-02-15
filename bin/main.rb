@@ -14,20 +14,21 @@ board_val = %w[1 2 3 4 5 6 7 8 9]
 
 board(board_val)
 
-class Players
-  def create_player
-    puts 'Enter your name player:'
-    player = gets.chomp
-    puts "Enter your symbol #{player}:"
-    player_symbol = gets.chomp
+def create_player
+  puts 'Enter your name player:'
+  player = gets.chomp
+  puts "Enter your symbol #{player}:"
+  player_symbol = gets.chomp
 
-    return [player, player_symbol]
+  Player.new(player, player_symbol)
+end
+
+class Player
+  def initialize(name, symbol)
+    @name = name
+    @symbol = symbol
   end
 end
 
-player_one = Players.new
-player = player_one.create_player
-
-player2 = player_one.create_player
-
-puts player,player2
+player1 = create_player
+player2 = create_player
