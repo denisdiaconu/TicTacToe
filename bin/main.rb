@@ -1,7 +1,6 @@
 require_relative '../lib/game_logic'
 require_relative '../lib/user_interface'
 
-
 class Player
   attr_accessor :name, :symbol
 
