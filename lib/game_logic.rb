@@ -1,3 +1,5 @@
+require_relative '../lib/user_interface'
+
 class GameLogic
   attr_accessor :player1, :player2
   def initialize
@@ -13,6 +15,7 @@ class GameLogic
     symbol = get_symbol(symbol)
     player = Player.new(name, symbol)
   end
+
   def get_symbol(sym_dup)
     loop do
       puts 'What 1 letter/character would you like to be your game marker?'
@@ -23,16 +26,34 @@ class GameLogic
     end
     @input
   end
+
   def play_game
     @board = Board.new
     @board.print_board
   end
+
+  def player_input(player)
+    loop do
+        puts "#{player.name} enter a value between 1-9 so we put #{player.symbol} on the board"
+        @num = gets.chomp
+        break if @board_grids[@num.to_i - 1] == @num.to_i
+        puts "enters a valid symbol"
+    end
+    @num.to_i
+  end
+
+  def player_turn(player)
+    cell = player_input(player)
+    @baord.board_grids[cell - 1] = player.symbol
+    @board.print_board
+  end
+
   def is_over
     @board.complete_line?(player1.symbol, player2.symbol)
   end
-  def player_turn
-  end
+   
 end
+
 class Player
     attr_accessor :name, :symbol
     def initialize(name, symbol)
@@ -43,4 +64,3 @@ end
 game = GameLogic.new
     def win(board)
     end
-end
