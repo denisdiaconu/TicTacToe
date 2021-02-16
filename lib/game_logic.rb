@@ -53,6 +53,7 @@ class GameLogic
     end
     @num
   end
+
   def current_player
     @winner = nil
     until is_over?
@@ -63,11 +64,11 @@ class GameLogic
       player_turn(@player2)
       @winner = @player2 if @board.end_game?
     end
-   end
+  end
 
-   def is_over?
+  def is_over?
     @board.complete_line?(player1.symbol, player2.symbol) || @winner
-   end
+  end
 
   def display_winner
     puts "You Won #{@winner.name}" if @winner
