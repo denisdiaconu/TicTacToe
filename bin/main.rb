@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 require_relative '../lib/create_player'
 require_relative '../lib/user_interface'
 
