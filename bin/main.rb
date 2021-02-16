@@ -17,18 +17,47 @@ board(board_val)
 def create_player
   puts 'Enter your name player:'
   player = gets.chomp
+  puts 'Symbols: X or O'
   puts "Enter your symbol #{player}:"
   player_symbol = gets.chomp
+  true_sym = %W[X O]
+  while !true_sym.include?(player_symbol.upcase)
+    puts 'Wrong symbol, enter the symbol again!'
+    puts "Enter your symbol #{player}:"
+    player_symbol = gets.chomp
+  end
+  player_symbol = player_symbol.upcase
 
   Player.new(player, player_symbol)
 end
 
 class Player
+  attr_accessor :name, :symbol
+
   def initialize(name, symbol)
     @name = name
     @symbol = symbol
+  end
+  def show_player
+    puts @name
+    puts @symbol
   end
 end
 
 player1 = create_player
 player2 = create_player
+
+puts "#{player1.name} has the symbol #{player1.symbol}!"
+
+puts board_val
+
+puts "#{player1.name} make your move!"
+
+puts "#{player2.name} make your move!"
+
+flag_on = true
+
+def move
+  
+end
+
