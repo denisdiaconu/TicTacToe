@@ -5,15 +5,6 @@ class Board
     @board_grids = %w[1 2 3 4 5 6 7 8 9]
   end
 
-  def print_board
-    puts "#{@board_grids[0]} | #{@board_grids[1]} | #{@board_grids[2]}"
-    puts '----------'
-    puts "#{@board_grids[3]} | #{@board_grids[4]} | #{@board_grids[5]}"
-    puts '----------'
-    puts "#{@board_grids[6]} | #{@board_grids[7]} | #{@board_grids[8]}"
-    puts '----------'
-  end
-
   def complete_line?(symbol1, symbol2)
     @board_grids.all? { |cell| cell == symbol1 || cell == symbol2 }
   end

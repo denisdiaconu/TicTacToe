@@ -15,6 +15,15 @@ class GameLogic
     play_game
   end
 
+  def print_board
+    puts "#{@board.board_grids[0]} | #{@board.board_grids[1]} | #{@board.board_grids[2]}"
+    puts '----------'
+    puts "#{@board.board_grids[3]} | #{@board.board_grids[4]} | #{@board.board_grids[5]}"
+    puts '----------'
+    puts "#{@board.board_grids[6]} | #{@board.board_grids[7]} | #{@board.board_grids[8]}"
+    puts '----------'
+  end
+
   def create_player(num, symbol = nil)
     puts "Enter your name player #{num}:"
     name = gets.chomp
@@ -37,7 +46,7 @@ class GameLogic
 
   def play_game
     @board = Board.new
-    @board.print_board
+    print_board
     current_player
     display_winner
   end
@@ -45,7 +54,7 @@ class GameLogic
   def player_turn(player)
     cell = player_input(player)
     @board.board_grids[cell - 1] = player.symbol
-    @board.print_board
+    print_board
   end
 
   def player_input(player)
