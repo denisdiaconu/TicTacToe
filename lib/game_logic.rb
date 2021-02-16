@@ -39,15 +39,18 @@ class GameLogic
 
   def player_turn(player)
     cell = player_input(player)
-    @board.board_grids[cell.to_i - 1] = player.symbol
+    @board.board_grids[cell - 1] = player.symbol
     @board.print_board
   end
 
   def player_input(player)
     loop do
       puts "#{player.name} enter a value between 1-9 so we put #{player.symbol} on the board"
-      @num = gets.chomp
-      break if @board.board_grids[@num.to_i - 1] != @num.to_i && @board.board_grids[@num.to_i - 1] != player.symbol
+      num = gets.chomp.to_i
+      if num.is_a?(Integer)
+        @num = num
+      end
+      break if @num.positive? && @num < 10 && @board.board_grids[@num - 1].to_i == @num
 
       puts 'enters a valid symbol'
     end
