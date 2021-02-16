@@ -2,18 +2,20 @@ require_relative '../lib/user_interface'
 
 class GameLogic
   attr_accessor :player1, :player2
+
   def initialize
     puts 'Welcome to the Tic Tac Toe game!'
     @player1 = create_player(1)
     @player2 = create_player(2, player1.symbol)
     play_game
   end
+
   def create_player(num, symbol = nil)
     puts "Enter your name player #{num}:"
     name = gets.chomp
     puts "Enter your symbol #{name}"
     symbol = get_symbol(symbol)
-    player = Player.new(name, symbol)
+    Player.new(name, symbol)
   end
 
   def get_symbol(sym_dup)
@@ -22,6 +24,7 @@ class GameLogic
       puts "It can not be #{sym_dup} " if sym_dup
       @input = gets.chomp.upcase
       break if @input.match?(/^.$/) && @input != sym_dup
+
       puts 'Sorry, that is an invalid answer. Please, try again'
     end
     @input
@@ -42,37 +45,31 @@ class GameLogic
 
   def player_input(player)
     loop do
-        puts "#{player.name} enter a value between 1-9 so we put #{player.symbol} on the board"
-        @num = gets.chomp
-        break if @board.board_grids[@num.to_i - 1] != @num.to_i && @board.board_grids[@num.to_i - 1] != player.symbol
+      puts "#{player.name} enter a value between 1-9 so we put #{player.symbol} on the board"
+      @num = gets.chomp
+      break if @board.board_grids[@num.to_i - 1] != @num.to_i && @board.board_grids[@num.to_i - 1] != player.symbol
 
-        puts "enters a valid symbol"
+      puts 'enters a valid symbol'
     end
     @num
   end
-
- def current_player
+  def current_player
     @winner = nil
     until is_over?
-        player_turn(@player1)
-        @winner = @player1 if @board.end_game?
-        break if is_over?
-        player_turn(@player2)
-        @winner = @player2 if @board.end_game?
-    end
-  end
+      player_turn(@player1)
+      @winner = @player1 if @board.end_game?
+      break if is_over?
 
- def is_over?
+      player_turn(@player2)
+      @winner = @player2 if @board.end_game?
+    end
+   end
+
+   def is_over?
     @board.complete_line?(player1.symbol, player2.symbol) || @winner
-  end
+   end
 
   def display_winner
-    if @winner 
-      puts"You Won #{@winner.name}"
-    end
+    puts "You Won #{@winner.name}" if @winner
   end
-
 end
-
-
-
