@@ -56,17 +56,17 @@ class GameLogic
 
   def current_player
     @winner = nil
-    until is_over?
+    until game_over?
       player_turn(@player1)
       @winner = @player1 if @board.end_game?
-      break if is_over?
+      break if game_over?
 
       player_turn(@player2)
       @winner = @player2 if @board.end_game?
     end
   end
 
-  def is_over?
+  def game_over?
     @board.complete_line?(player1.symbol, player2.symbol) || @winner
   end
 
