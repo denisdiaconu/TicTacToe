@@ -30,26 +30,45 @@ class GameLogic
   def play_game
     @board = Board.new
     @board.print_board
+    current_player
+    display_winner
   end
 
   def player_input(player)
     loop do
         puts "#{player.name} enter a value between 1-9 so we put #{player.symbol} on the board"
         @num = gets.chomp
-        break if @board_grids[@num.to_i - 1] == @num.to_i
-        puts "enters a valid symbol"
+        break if @board.board_girds[@num.to_i - 1] == @num.to_i
+          puts "enters a valid symbol"
     end
     @num.to_i
   end
 
   def player_turn(player)
     cell = player_input(player)
-    @baord.board_grids[cell - 1] = player.symbol
+    @baord.board_girds[cell - 1] = player.symbol
     @board.print_board
   end
 
-  def is_over
-    @board.complete_line?(player1.symbol, player2.symbol)
+  def display_winner
+    if @winner 
+      puts"You Won #{@winner.name}"
+    end
+  end
+
+  def current_player
+    @winner = nil
+    until is_over?
+        player_turn(@player1)
+        @winner = @player1 if @board.end_game?
+        break if is_over
+        player_turn(@player2)
+        @winner = @player2 if @board.end_game?
+    end
+  end
+
+  def is_over?
+    @board.complete_line?(player1.symbol, player2.symbol) || @winner
   end
    
 end
