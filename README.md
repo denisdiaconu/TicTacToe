@@ -32,7 +32,7 @@ Knowledge about Ruby:
 
 - GitHub: [@nganifaith](https://github.com/nganifaith)
 - Twitter: [@Bright_Ngani](https://twitter.com/bright_ngani)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ngani-faith/)
+- LinkedIn: [Ngani Faith](https://www.linkedin.com/in/ngani-faith/)
 
 
 👤 **Denis Andrei Diaconu**
